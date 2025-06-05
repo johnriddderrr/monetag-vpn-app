@@ -63,11 +63,18 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Активируйте бесплатный VPN</h1>
-    <p>Нажмите ниже, чтобы активировать безопасное VPN-соединение и оставаться анонимным.</p>
-    <a class="button" href="#" onclick="show_9416162()">Активировать сейчас</a>
-    <small>Предоставлено Monetag</small>
-  </div>
+  <h1>Получите бесплатный VPN</h1>
+  <p>Посмотрите короткую рекламу, чтобы получить доступ</p>
+  <button onclick="watchAd()">Смотреть рекламу</button>
+
+  <script>
+    function watchAd() {
+      show_9416162().then(() => {
+        alert('Спасибо! Реклама просмотрена. VPN активирован.');
+        // Здесь можно активировать доступ или перенаправить пользователя
+        // window.location.href = 'https://vpn-access-link.com';
+      });
+    }
+  </script>
 </body>
 </html>
