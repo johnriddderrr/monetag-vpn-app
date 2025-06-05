@@ -3,78 +3,72 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Бесплатный VPN</title>
-  <script src='//libtl.com/sdk.js' data-zone='9416162' data-sdk='show_9416162'></script>
-  <style> 
+  <title>Бесплатный VPN с наградой</title>
+  <script src="//libtl.com/sdk.js" data-zone="9416162" data-sdk="show_9416162"></script>
+  <style>
     body {
+      background-color: #121212;
+      color: #fff;
       font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: #f1f5f9;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 20px;
-    }
-
-    .container {
-      background: #1e293b;
-      padding: 30px;
-      border-radius: 15px;
       text-align: center;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-      max-width: 400px;
-      width: 100%;
+      padding: 50px;
     }
-
-    h1 {
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-
-    p {
-      font-size: 16px;
-      margin-bottom: 20px;
-    }
-
-    a.button {
-      background: #22c55e;
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      background: #00c853;
       color: white;
-      text-decoration: none;
-      padding: 12px 20px;
+      border: none;
       border-radius: 10px;
-      font-weight: bold;
-      font-size: 16px;
-      display: inline-block;
-      transition: background 0.2s ease;
+      cursor: pointer;
+      margin: 10px;
     }
-
-    a.button:hover {
-      background: #16a34a;
-    }
-
-    small {
-      display: block;
-      margin-top: 20px;
-      color: #94a3b8;
-      font-size: 12px;
+    button:hover {
+      background: #00b44b;
     }
   </style>
 </head>
 <body>
-  <h1>Получите ля бесплатный VPN</h1>
-  <p>Посмотрите короткую рекламу, чтобы получить доступ</p>
-  <button onclick="watchAd()">Смотреть рекламу</button>
+  <h1>Активируй бесплатный VPN</h1>
+  <p>Выбери способ просмотра рекламы:</p>
+
+  <!-- Rewarded Interstitial -->
+  <button onclick="watchInterstitial()">📺 Rewarded Interstitial</button>
+
+  <!-- Rewarded Popup -->
+  <button onclick="watchPopup()">🪟 Rewarded Popup</button>
+
+  <!-- In-App Interstitial запускается при загрузке -->
+  <p style="margin-top:30px;">⏳ In-App Interstitial автоматически запускается через 5 сек...</p>
 
   <script>
-    function watchAd() {
+    // Rewarded Interstitial
+    function watchInterstitial() {
       show_9416162().then(() => {
-        alert('Спасибо! Реклама просмотрена. VPN активирован.');
-        // Здесь можно активировать доступ или перенаправить пользователя 
-        // window.location.href = 'https://vpn-access-link.com';
+        alert('✅ Interstitial просмотрена. VPN активирован.');
       });
     }
+
+    // Rewarded Popup
+    function watchPopup() {
+      show_9416162('pop').then(() => {
+        alert('✅ Popup просмотрен. Спасибо!');
+      }).catch(e => {
+        alert('❌ Ошибка при показе рекламы.');
+      });
+    }
+
+    // In-App Interstitial (автоматически через 5 сек)
+    show_9416162({
+      type: 'inApp',
+      inAppSettings: {
+        frequency: 2,
+        capping: 0.1,
+        interval: 30,
+        timeout: 5,
+        everyPage: false
+      }
+    });
   </script>
 </body>
 </html>
